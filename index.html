@@ -34,40 +34,7 @@
                 data: _.map(lista, function(o){ return _.meanBy(conselho, o);})
             }];
             console.log(series);
-            var options = {
-	            chart: {
-	                height: 350,
-	                type: 'bar',
-	            },
-	            plotOptions: {
-	                bar: {
-	                    horizontal: false,
-	                    columnWidth: '55%',
-	                    endingShape: 'rounded'	
-	                },
-	            },
-	            dataLabels: {
-	                enabled: false
-	            },
-	            stroke: {
-	                show: true,
-	                width: 2,
-	                colors: ['transparent']
-	            },
-	            series: series,
-	            xaxis: {
-	                categories: lista,
-	            },
-	            fill: {
-	                opacity: 1
 
-	            },
-	        }
-	        var chart = new ApexCharts(
-	            document.querySelector("#chart"),
-	            options
-	        );
-	        chart.render();
 		  })
 		  .catch(function (error) {
 		    // handle error
@@ -77,6 +44,55 @@
 		    // always executed
 		  });
 
-		
+		var options = {
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'	
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            series: series,
+            xaxis: {
+                categories: lista,
+            },
+            yaxis: {
+                labels: {
+				    formatter: function (value) {
+				    	return val.toFixed(2);
+				    }
+				},
+            },
+            fill: {
+                opacity: 1
+
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                }
+            }
+        }
+
+        var chart = new ApexCharts(
+            document.querySelector("#chart"),
+            options
+        );
+
+        chart.render();
     </script>
 </html>
