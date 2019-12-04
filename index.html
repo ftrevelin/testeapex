@@ -18,7 +18,23 @@
     	axios.get('https://script.google.com/macros/s/AKfycbzY6nIPK6-ydARD3JEWIuYOvuz1sBso_xNhx4J-SD-q2ydu4HqC/exec')
 		  .then(function (response) {
 		    // handle success
-		    console.log(response);
+		    console.log(response.data);
+		    var lista = ['pergunta1','pergunta2'];
+		    var total = response.data;
+		    var diretoria = _.filter(total, function(o) { return _.includes(['Felipe'],o.nome); });
+		    var conselho = _.reject(total, function(o) { return _.includes(['Felipe'],o.nome); })
+		    var series = [{
+                name: 'Total',
+                data: _.map(lista, function(o){ return _.meanBy(total, o);})
+            }, {
+                name: 'Diretoria',
+                data: _.map(lista, function(o){ return _.meanBy(diretoria, o);})
+            }, {
+                name: 'Conselho',
+                data: _.map(lista, function(o){ return _.meanBy(conselho, o);})
+            }];
+            console.log(series);
+
 		  })
 		  .catch(function (error) {
 		    // handle error
