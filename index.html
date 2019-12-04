@@ -9,9 +9,13 @@
 		<meta http-equiv="pragma" content="no-cache" />
     </head>
     <body>
+    	<h1>Atribuições</h1>
         <div id="chart1"></div>
+        <h1>Dimensões</h1>
         <div id="chart2"></div>
+        <h1>Dinâmicas</h1>
         <div id="chart3"></div>
+        <h1>Boas Práticas</h1>
         <div id="chart4"></div>
     </body>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -34,7 +38,7 @@
 		    var conselho = _.reject(total, function(o) { return _.includes(emailsdiretoria,o.Email); })
 		    _.forEach(charts, function(lista, chartid) {
 				var series = [{
-	                name: 'Total',
+	                name: 'Média',
 	                data: _.map(lista, function(o){ return _.meanBy(total, o);})
 	            }, {
 	                name: 'Diretoria',
